@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "840371005523",
+    "project_id": "dac-club-app",
+    "storage_bucket": "dac-club-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840371005523:android:2e68245e29bccedb6efea6",
+        "android_client_info": {
+          "package_name": "com.example.new_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840371005523-gv3e8t1o2lq3vt50siigkig1lbj6s45i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn2DYGWVcGYlROVXJs_DoIxZv06dZXDWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840371005523-gv3e8t1o2lq3vt50siigkig1lbj6s45i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
