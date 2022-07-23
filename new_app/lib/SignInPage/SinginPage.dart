@@ -32,7 +32,11 @@ class SignInPage extends StatelessWidget {
                           email: emailController.text.trim(),
                           password: passwordController.text.trim())
                     },
-                child: const Text("Login"))
+                child: const Text("Login")),
+            ElevatedButton(
+                onPressed: () =>
+                    {context.read<AuthenticationService>().signInWithGoogle()},
+                child: const Text("Login met"))
           ],
         ),
       ),

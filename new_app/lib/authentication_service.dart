@@ -1,5 +1,6 @@
 import 'dart:ffi';
-
+import 'dart:html';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class AuthenticationService {
     await _firebaseAuth.signOut();
   }
 
+// MARK: Sign in with regular email (will be depracted)
   Future<String?> signIn(
       {required String email, required String password}) async {
     try {
@@ -26,6 +28,7 @@ class AuthenticationService {
     }
   }
 
+// MARk: Sign uo
   Future<String?> singUp(
       {required String email, required String password}) async {
     try {
@@ -35,5 +38,22 @@ class AuthenticationService {
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
+  }
+
+  // Sign in with Google
+  Future<UserCredential?> signInWithGoogle() async {
+    // triger authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // create a new credential
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
