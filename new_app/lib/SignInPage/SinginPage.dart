@@ -36,7 +36,7 @@ class SignInPage extends StatelessWidget {
             ElevatedButton(
                 onPressed: () =>
                     {context.read<AuthenticationService>().signInWithGoogle()},
-                child: const Text("Login met"))
+                child: const Text("Login met Google"))
           ],
         ),
       ),
