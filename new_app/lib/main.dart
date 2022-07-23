@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:new_app/UserInfoScreen/UserInfoScreen.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/HomePage/HomePage.dart';
@@ -51,8 +52,11 @@ class AuthenticationWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final firebaseuser = context.watch<User?>();
 
+    User? user = FirebaseAuth.instance.currentUser;
     if (firebaseuser == null) {
       return SignInPage();
+    } else if (user != null) {
+      return UserInfoScreen(user: user);
     }
     return const HomePage();
   }

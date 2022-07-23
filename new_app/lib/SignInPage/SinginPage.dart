@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
 import 'package:new_app/authentication_service.dart';
 import 'package:provider/provider.dart';
 
@@ -9,37 +11,42 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
+        appBar: AppBar(title: const Text("Login")),
         body: Column(
           children: [
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: "Email",
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: Image.asset('assets/images/dac-logo.png'),
             ),
-            TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                labelText: "Wachtwoord",
-              ),
+            const Center(
+              child: Text("Welkom bij Volleybal Dedemsvaart!",
+                  style: TextStyle(fontSize: 25), textAlign: TextAlign.center),
             ),
-            ElevatedButton(
-                onPressed: () => {
-                      // Login code
-                      context.read<AuthenticationService>().signIn(
-                          email: emailController.text.trim(),
-                          password: passwordController.text.trim())
-                    },
-                child: const Text("Login")),
-            ElevatedButton(
-                onPressed: () =>
-                    {context.read<AuthenticationService>().signInWithGoogle()},
-                child: const Text("Login met Google"))
+            const Text("Login om verder in de app te gaan"),
+            const Center(child: LoginButtonList()),
           ],
-        ),
-      ),
+        ));
+  }
+}
+
+// column that contains buttons
+class LoginButtonList extends StatelessWidget {
+  const LoginButtonList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SignInButton(Buttons.Google,
+            text: "Login met Google",
+            onPressed: () =>
+                {context.read<AuthenticationService>().signInWithGoogle()}),
+        SignInButton(Buttons.Facebook,
+            text: "Login met Facebook", onPressed: () => {}),
+        SignInButton(Buttons.Twitter,
+            text: "Login met Twitter", onPressed: () => {})
+      ],
     );
   }
 }

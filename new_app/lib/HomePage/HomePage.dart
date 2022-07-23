@@ -7,19 +7,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Center(
-          child: Column(
-            children: [
-              const Text("Home"),
-              ElevatedButton(
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            const Text("Home"),
+            Center(
+              child: ElevatedButton(
                   onPressed: () {
                     context.read<AuthenticationService>().singout();
                   },
-                  child: const Text("Uitloggen"))
-            ],
-          ),
+                  child: const Text("Uitloggen")),
+            )
+          ],
         ),
       ),
     );
