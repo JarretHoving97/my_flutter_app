@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:new_app/UserInfoScreen/UserInfoScreen.dart';
-import 'firebase_options.dart';
+import 'package:new_app/Scenes/Onboarding/UserInfoScreen.dart';
+import 'Firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
-import 'package:new_app/HomePage/HomePage.dart';
-import 'package:new_app/SignInPage/SinginPage.dart';
-import 'package:new_app/authentication_service.dart';
-import 'package:new_app/firebase_options.dart';
+import 'package:new_app/Scenes/Home/HomePage.dart';
+import 'package:new_app/Scenes/Login/SinginPage.dart';
+import 'package:new_app/Firebase/authentication_service.dart';
+import 'package:new_app/Firebase/firebase_options.dart';
 import 'package:provider/provider.dart';
 
 void main() async {

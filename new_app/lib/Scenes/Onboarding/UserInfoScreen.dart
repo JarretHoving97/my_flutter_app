@@ -4,10 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:new_app/HomePage/HomePage.dart';
+import 'package:new_app/Scenes/Home/HomePage.dart';
 import 'package:provider/provider.dart';
 
-import '../authentication_service.dart';
+import '../../Firebase/authentication_service.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({Key? key, required User user})
