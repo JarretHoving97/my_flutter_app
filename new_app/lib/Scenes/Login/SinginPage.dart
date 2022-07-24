@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:new_app/Firebase/authentication_service.dart';
+import 'package:new_app/Util/AppColor.dart';
 import 'package:provider/provider.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -12,10 +13,10 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: AppColor.appBackground,
         appBar: AppBar(
-          title: const Text("Login"),
+          backgroundColor: AppColor.appBackground,
           elevation: 0,
-          backgroundColor: Colors.white10,
         ),
         body: Column(
           children: [
