@@ -10,6 +10,8 @@ import 'package:new_app/Firebase/authentication_service.dart';
 import 'package:new_app/Firebase/firebase_options.dart';
 import 'package:provider/provider.dart';
 
+import 'Scenes/News/NewsData.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -32,7 +34,8 @@ class MyApp extends StatelessWidget {
         StreamProvider(
             initialData: null,
             create: (context) =>
-                context.read<AuthenticationService>().authStateChanges)
+                context.read<AuthenticationService>().authStateChanges),
+        ChangeNotifierProvider<NewsData>(create: (context) => NewsData())
       ],
       child: MaterialApp(
         title: "Flutter Demo",

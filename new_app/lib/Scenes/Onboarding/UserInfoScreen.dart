@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:new_app/Scenes/News/NewsPage.dart';
 import 'package:new_app/Util/AppColor.dart';
 import 'package:provider/provider.dart';
 
@@ -116,7 +117,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // context.read<AuthenticationService>().singout();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Newspage()),
+                    );
                   },
                   child: Text("Ga door"),
                   style: ElevatedButton.styleFrom(
