@@ -1,4 +1,27 @@
-import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
+import 'dart:convert';
+
+NewsResponse newsResponseFromJson(String str) =>
+    NewsResponse.fromJson(json.decode(str));
+
+String newsResponseToJson(NewsResponse data) => json.encode(data.toJson());
+
+class NewsResponse {
+  NewsResponse({
+    required this.news,
+  });
+
+  final List<NewsModel> news;
+
+  factory NewsResponse.fromJson(Map<String, dynamic> json) => NewsResponse(
+        news: List<NewsModel>.from(
+            json["news"].map((x) => NewsModel.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "news": List<dynamic>.from(news.map((x) => x.toJson())),
+      };
+}
 
 class NewsModel {
   final int id;
@@ -21,8 +44,17 @@ class NewsModel {
         id: json['id'],
         title: json['title'],
         content: json['content'],
-        image: json['image'],
+        image: json["image"] ?? "",
         createdAt: json['createdAt'],
         updatedAt: json['updatedAt']);
   }
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "content": content,
+        "image": image == null ? null : image,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
+      };
 }

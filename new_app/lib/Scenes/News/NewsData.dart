@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 class NewsData extends ChangeNotifier {
-  late List<NewsModel> newsModel;
+  late NewsResponse newsModel;
 
   fetchData(context) async {
     newsModel = await getData(context);
@@ -15,22 +15,24 @@ class NewsData extends ChangeNotifier {
   }
 }
 
-Future<List<NewsModel>> getData(context) async {
-  late List<NewsModel> newsData;
+Future<NewsResponse> getData(context) async {
+  late NewsResponse newsData;
 
   try {
     final response = await http.get(Uri.parse(
         'http://192.168.0.102:8080/news/all/perPage/100/currentPage/1"'));
 
     if (response.statusCode == 200) {
-      final List<NewsModel> data = json.decode(response.body);
-      newsData = data;
+      Map<String, dynamic> map = json.decode(response.body);
+      final List<NewsModel> newsList = (map['news'] as List)
+          .map((news) => NewsModel.fromJson(news))
+          .toList();
+      newsData = NewsResponse(news: newsList);
     } else {
       print("something went wrong..");
     }
   } catch (e) {
-    print(e.toString());
+    print("Probeelmn " + e.toString());
   }
-
   return newsData;
 }

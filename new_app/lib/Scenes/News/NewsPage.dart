@@ -27,7 +27,7 @@ class _NewspageState extends State<Newspage> {
 
     return Scaffold(
       body: Center(
-        child: Text("Goeie dag eem"),
+        child: Text(newsData.newsModel.news[0].title),
       ),
     );
   }
