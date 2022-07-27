@@ -11,6 +11,10 @@ List<SingleChildWidget> providers = [
   Provider<AuthenticationService>(
     create: (_) => AuthenticationService(FirebaseAuth.instance),
   ),
+  StreamProvider(
+      initialData: null,
+      create: (context) =>
+          context.read<AuthenticationService>().authStateChanges),
   ChangeNotifierProvider<NewsDataProvider>(
     create: (context) => NewsDataProvider(),
   )
