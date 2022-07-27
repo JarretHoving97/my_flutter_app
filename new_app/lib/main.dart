@@ -1,16 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:new_app/Model/Providers.dart';
+
+import 'package:new_app/Network/NewsClient.dart';
+import 'package:new_app/Scenes/News/NewsPage.dart';
 import 'package:new_app/Scenes/Onboarding/UserInfoScreen.dart';
+import 'Firebase/authentication_service.dart';
 import 'Firebase/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/Scenes/Home/HomePage.dart';
 import 'package:new_app/Scenes/Login/SinginPage.dart';
-import 'package:new_app/Firebase/authentication_service.dart';
-import 'package:new_app/Firebase/firebase_options.dart';
-import 'package:provider/provider.dart';
 
-import 'Scenes/News/NewsData.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,16 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        Provider<AuthenticationService>(
-          create: (_) => AuthenticationService(FirebaseAuth.instance),
-        ),
-        StreamProvider(
-            initialData: null,
-            create: (context) =>
-                context.read<AuthenticationService>().authStateChanges),
-        ChangeNotifierProvider<NewsData>(create: (context) => NewsData())
-      ],
+      providers: providers,
       child: MaterialApp(
         title: "Flutter Demo",
         theme: ThemeData(

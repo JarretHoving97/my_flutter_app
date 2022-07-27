@@ -1,34 +1,41 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:new_app/Model/NewsModel.dart';
-
-import 'package:new_app/Scenes/News/NewsData.dart';
+import 'package:new_app/Network/NewsClient.dart';
 import 'package:provider/provider.dart';
 
-class Newspage extends StatefulWidget {
-  const Newspage({Key? key}) : super(key: key);
+class NewsPage extends StatefulWidget {
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
-  State<Newspage> createState() => _NewspageState();
+  State<NewsPage> createState() => _NewsPageState();
 }
 
-class _NewspageState extends State<Newspage> {
+class _NewsPageState extends State<NewsPage> {
   @override
   void initState() {
     super.initState();
-    final data = Provider.of<NewsData>(context, listen: false);
-    data.fetchData(context);
+
+    final newsData = Provider.of<NewsDataProvider>(context, listen: false);
+    newsData.fetchNews(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final newsData = Provider.of<NewsData>(context);
+    final newsProvider = Provider.of<NewsDataProvider>(context);
 
     return Scaffold(
-      body: Center(
-        child: Text(newsData.newsModel.news[0].title),
+      appBar: AppBar(
+        title: Text("Nieuws"),
       ),
+      body: Container(
+          child: newsProvider.loading
+              ? Container(
+                  child: CircularProgressIndicator(),
+                )
+              : Container(
+                  child: Text(newsProvider.newsResponse.news.first.title),
+                )),
     );
   }
 }

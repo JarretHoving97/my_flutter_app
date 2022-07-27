@@ -119,7 +119,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Newspage()),
+                      MaterialPageRoute(builder: (context) => const NewsPage()),
                     );
                   },
                   child: Text("Ga door"),
