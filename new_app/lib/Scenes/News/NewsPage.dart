@@ -2,7 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:new_app/Network/NewsClient.dart';
+import 'package:new_app/Scenes/Home/NewsWidgetItem.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
@@ -34,7 +36,12 @@ class _NewsPageState extends State<NewsPage> {
                   child: CircularProgressIndicator(),
                 )
               : Container(
-                  child: Text(newsProvider.newsResponse.news.first.title),
+                  child: ListView.builder(
+                    padding: EdgeInsets.fromLTRB(17, 10, 17, 0),
+                    itemCount: newsProvider.newsResponse.news.length,
+                    itemBuilder: (context, index) => NewsItemWidget(
+                        newsArticle: newsProvider.newsResponse.news[index]),
+                  ),
                 )),
     );
   }
