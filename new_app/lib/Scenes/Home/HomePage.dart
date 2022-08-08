@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/Firebase/authentication_service.dart';
 import 'package:provider/provider.dart';
@@ -7,20 +8,18 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            const Text("Home"),
-            Center(
-              child: ElevatedButton(
-                  onPressed: () {
-                    context.read<AuthenticationService>().singout();
-                  },
-                  child: const Text("Uitloggen")),
-            )
-          ],
-        ),
+    return CupertinoPageScaffold(
+      child: Center(
+        child: Column(children: [
+          const Text("Home"),
+          Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  context.read<AuthenticationService>().singout();
+                },
+                child: const Text("Uitloggen")),
+          )
+        ]),
       ),
     );
   }

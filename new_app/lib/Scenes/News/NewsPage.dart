@@ -2,7 +2,9 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:new_app/Network/NewsClient.dart';
-import 'package:new_app/Scenes/Home/NewsWidgetItem.dart';
+import 'package:new_app/Scenes/News/NewsDetailPage.dart';
+import 'package:new_app/Scenes/News/NewsWidgetItem.dart';
+import 'package:new_app/Util/AppColor.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -28,6 +30,7 @@ class _NewsPageState extends State<NewsPage> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColor.appColor,
         title: Text("Nieuws"),
       ),
       body: Container(
@@ -39,8 +42,19 @@ class _NewsPageState extends State<NewsPage> {
                   child: ListView.builder(
                     padding: EdgeInsets.fromLTRB(17, 10, 17, 0),
                     itemCount: newsProvider.newsResponse.news.length,
-                    itemBuilder: (context, index) => NewsItemWidget(
-                        newsArticle: newsProvider.newsResponse.news[index]),
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => NewsDetailWidget(
+                                      newsArticle:
+                                          newsProvider.newsResponse.news[index],
+                                    )))),
+                      },
+                      child: NewsItemWidget(
+                          newsArticle: newsProvider.newsResponse.news[index]),
+                    ),
                   ),
                 )),
     );

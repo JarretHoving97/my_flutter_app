@@ -41,6 +41,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   http: ^0.13.4
   intl: ^0.17.0
+  cached_network_image: ^3.2.1
 
 
 dev_dependencies:

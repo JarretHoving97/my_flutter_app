@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -5,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:new_app/Helper/DateFormatHelper.dart';
 import 'package:new_app/Model/NewsModel.dart';
 import 'package:new_app/Network/MediaClient.dart';
+import 'package:new_app/Scenes/News/NewsDetailPage.dart';
 
 class NewsItemWidget extends StatelessWidget {
   const NewsItemWidget({Key? key, required this.newsArticle}) : super(key: key);
@@ -14,6 +16,7 @@ class NewsItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    String imageUrl = Mediaclient.mediaUrl + newsArticle.image;
     return Card(
       elevation: 2.0,
       child: SizedBox(
@@ -22,20 +25,16 @@ class NewsItemWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(children: [
-              newsArticle.image != ""
-                  ? FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/dac-logo.png',
-                      image: Mediaclient.mediaUrl + newsArticle.image,
-                      fadeInDuration: const Duration(milliseconds: 3),
-                      fit: BoxFit.cover,
-                      imageScale: 10,
-                      width: 100,
-                      height: 100,
-                    )
-                  : const SizedBox(
-                      width: 100,
-                      height: 100,
-                    ),
+              CachedNetworkImage(
+                imageUrl: imageUrl,
+                placeholder: (context, url) =>
+                    Container(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) =>
+                    Container(color: Colors.white),
+                width: 100,
+                height: 100,
+                fit: BoxFit.fitWidth,
+              ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 8, 0),
                 child: Column(
@@ -68,7 +67,7 @@ class NewsItemWidget extends StatelessWidget {
                     ),
                     const Spacer(),
                     SizedBox(
-                      width: screenWidth * 0.57,
+                      width: screenWidth * 0.53,
                       child: Row(
                         children: [
                           const Spacer(),
