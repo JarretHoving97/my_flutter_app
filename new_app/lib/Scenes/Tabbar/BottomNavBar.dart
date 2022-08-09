@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:new_app/Scenes/Event/EventPage.dart';
 import 'package:new_app/Scenes/News/NewsPage.dart';
 import 'package:new_app/Util/AppColor.dart';
 
@@ -16,12 +17,7 @@ class _MyWidgetState extends State<BottomNavBar> {
 
   static const List<Widget> _pages = <Widget>[
     NewsPage(),
-    Center(
-      child: Icon(
-        Icons.chat,
-        size: 150,
-      ),
-    ),
+    EventPage(),
     Center(
         child: Icon(
       Icons.person,

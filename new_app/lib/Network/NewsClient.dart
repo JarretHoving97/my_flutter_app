@@ -32,7 +32,6 @@ Future<NewsResponse> fetchNewsData(context) async {
 
   try {
     final response = await http.get(Uri.parse(NewsRouter.newsEndpoint));
-    print(NewsRouter.newsEndpoint);
     if (response.statusCode == 200) {
       Map<String, dynamic> map = json.decode(response.body);
       final List<NewsModel> newsList = (map['news'] as List)
