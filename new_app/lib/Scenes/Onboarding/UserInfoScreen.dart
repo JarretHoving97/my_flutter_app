@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/Scenes/News/NewsPage.dart';
+import 'package:new_app/Scenes/Tabbar/BottomNavBar.dart';
 import 'package:new_app/Util/AppColor.dart';
 import 'package:provider/provider.dart';
 
@@ -119,7 +120,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const NewsPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const BottomNavBar()),
                     );
                   },
                   child: Text("Ga door"),

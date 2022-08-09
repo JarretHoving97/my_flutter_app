@@ -36,8 +36,12 @@ class _NewsPageState extends State<NewsPage> {
       body: Container(
           child: newsProvider.loading
               ? Container(
-                  child: CircularProgressIndicator(),
+                  child: const Center(
+                      child: CircularProgressIndicator(
+                    color: AppColor.secondairyColor,
+                  )),
                 )
+              // ignore: avoid_unnecessary_containers
               : Container(
                   child: ListView.builder(
                     padding: EdgeInsets.fromLTRB(17, 10, 17, 0),
