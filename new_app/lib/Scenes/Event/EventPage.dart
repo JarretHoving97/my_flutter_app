@@ -13,6 +13,7 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
+  @override
   void initState() {
     super.initState();
 

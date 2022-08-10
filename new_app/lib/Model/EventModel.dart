@@ -37,7 +37,7 @@ class EventModel {
         id: json["id"],
         title: json["title"],
         content: json["content"],
-        image: json["image"] == null ? null : json["image"],
+        image: json["image"] ?? "",
         registerFrom: DateTime.parse(json["register_from"]),
         registerTill: DateTime.parse(json["register_till"]),
         membersOnly: json["members_only"],

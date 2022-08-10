@@ -31,13 +31,13 @@ Future<List<EventModel>> fetchEventsData(context) async {
   try {
     final response = await http.get(Uri.parse(EventClient.eventListEndpoint));
     if (response.statusCode == 200) {
-      final List parsedList = json.decode(response.body);
-      List<EventModel> list =
-          parsedList.map((e) => EventModel.fromJson(e)).toList();
-      events = list;
+      final list = json.decode(response.body);
+
+      events = List<EventModel>.from(
+          list.map((model) => EventModel.fromJson(model)));
     }
   } catch (e) {
-    print("error fetching event data");
+    print("error fetching event data " + e.toString());
   }
 
   return events;
