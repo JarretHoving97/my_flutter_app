@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:new_app/Model/LocalUserModel.dart';
 import 'package:new_app/Model/Providers.dart';
 import 'package:new_app/Scenes/Onboarding/UserInfoScreen.dart';
 import 'Firebase/firebase_options.dart';
@@ -46,6 +47,9 @@ class AuthenticationWrapper extends StatelessWidget {
     if (firebaseuser == null) {
       return SignInPage();
     } else if (user != null) {
+      // set user data to shared preference
+      LocalUserModel.shared.user = user;
+
       return UserInfoScreen(user: user);
     }
     return const HomePage();

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:new_app/Scenes/News/NewsPage.dart';
+import 'package:new_app/Scenes/Onboarding/UserAccessWrapper.dart';
 import 'package:new_app/Scenes/Tabbar/BottomNavBar.dart';
 import 'package:new_app/Util/AppColor.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColor.appBackground,
       appBar: AppBar(elevation: 0, backgroundColor: AppColor.appBackground),
@@ -77,13 +79,13 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             ),
           ),
           const SizedBox(height: 8.0),
+          const SizedBox(
+            height: 20,
+          ),
           Text(
-            ' (${_user.email})',
-            style: const TextStyle(
-              color: AppColor.hilightedTextColor,
-              fontSize: 20,
-              letterSpacing: 0.5,
-            ),
+            "Welkom bij Volleybal Dedemsvaart!",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: 20,
@@ -100,12 +102,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               textAlign: TextAlign.center,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
+          Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 60,
+                width: screenWidth / 2.5,
+                child: ElevatedButton(
                     onPressed: () {
                       context.read<AuthenticationService>().singout();
                     },
@@ -113,15 +117,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                             AppColor.appColor))),
-                const SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              SizedBox(
+                height: 60,
+                width: screenWidth / 2.5,
+                child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const BottomNavBar()),
+                          builder: (context) => UserAccessWrapper()),
                     );
                   },
                   child: Text("Ga door"),
@@ -129,9 +137,9 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     primary: AppColor.appBackground,
                     onPrimary: AppColor.appColor,
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ]),
       )),

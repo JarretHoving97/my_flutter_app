@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:new_app/Network/AccessClient.dart';
 import 'package:new_app/Network/EventClient.dart';
 import 'package:new_app/Network/NewsClient.dart';
 import 'package:provider/provider.dart';
@@ -21,5 +22,7 @@ List<SingleChildWidget> providers = [
   ),
   ChangeNotifierProvider<EventDataprovider>(
     create: (context) => EventDataprovider(),
-  )
+  ),
+  ChangeNotifierProvider<AccessAppProviver>(
+      create: (context) => AccessAppProviver())
 ];
