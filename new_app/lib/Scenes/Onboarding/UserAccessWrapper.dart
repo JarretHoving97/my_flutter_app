@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:new_app/Network/AccessClient.dart';
+import 'package:new_app/Scenes/Onboarding/OnboardingForm.dart';
+import 'package:new_app/Scenes/Onboarding/UserInfoPage.dart';
 import 'package:provider/provider.dart';
 
 import '../../Util/AppColor.dart';
@@ -26,17 +28,19 @@ class _UserAccessWrapperState extends State<UserAccessWrapper> {
   Widget build(BuildContext context) {
     final accessProvider = Provider.of<AccessAppProviver>(context);
 
-    return Container(
-      child: accessProvider.loading
-          ? Container(
-              child: const Center(
-                  child: CircularProgressIndicator(
-                color: AppColor.secondairyColor,
-              )),
-            )
-          : accessProvider.hasAccess.verified
-              ? Text("Heeft access!")
-              : Text("Nee!"),
-    );
+    return Scaffold(
+        body: Container(
+      child: UserInfoPage(),
+      // child: accessProvider.loading
+      //     ? Container(
+      //         child: const Center(
+      //             child: CircularProgressIndicator(
+      //           color: AppColor.secondairyColor,
+      //         )),
+      //       )
+      //     : accessProvider.hasAccess.registered
+      //         ? Text("Heeft access!")
+      //         : UserInfoPage(),
+    ));
   }
 }

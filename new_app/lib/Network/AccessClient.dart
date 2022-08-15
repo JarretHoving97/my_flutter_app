@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:new_app/Model/AccessModel.dart';
 import 'package:new_app/Model/EventModel.dart';
 import 'package:new_app/Model/LocalUserModel.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:new_app/Model/AccessModel';
 
 class AccessClient {
   static const checkAccessEndpont = "http://192.168.0.102:8080/auth/access/";
