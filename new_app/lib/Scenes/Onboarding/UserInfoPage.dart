@@ -11,6 +11,7 @@ class UserInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: AppColor.appBackground,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: AppColor.appColor,
@@ -31,13 +32,13 @@ class UserInfoPage extends StatelessWidget {
             Container(
               width: screenWidth,
               padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-              child: Text(
+              child: const Text(
                 "Pas je gegevens aan en vul nodige informatie is om door te kunnen gaan",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
                 textAlign: TextAlign.left,
               ),
             ),
-            OnboardingForm(),
+            const OnboardingForm(),
           ],
         ),
       ),

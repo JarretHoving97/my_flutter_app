@@ -19,7 +19,6 @@ class AccessAppProviver with ChangeNotifier {
     loading = true;
 
     hasAccess = await checkForAcccess(context);
-
     loading = false;
 
     notifyListeners();

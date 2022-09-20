@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:new_app/Network/AccessClient.dart';
 import 'package:new_app/Scenes/News/NewsPage.dart';
-import 'package:new_app/Scenes/Onboarding/UserAccessWrapper.dart';
+import 'package:new_app/Scenes/Onboarding/UserInfoPage.dart';
 import 'package:new_app/Scenes/Tabbar/BottomNavBar.dart';
 import 'package:new_app/Util/AppColor.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AccessAppProviver accessClient = Provider.of<AccessAppProviver>(context);
+
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColor.appBackground,
@@ -129,7 +132,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => UserAccessWrapper()),
+                          builder: (context) => const UserInfoPage()),
                     );
                   },
                   child: Text("Ga door"),

@@ -23,6 +23,5 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<EventDataprovider>(
     create: (context) => EventDataprovider(),
   ),
-  ChangeNotifierProvider<AccessAppProviver>(
-      create: (context) => AccessAppProviver())
+  ChangeNotifierProvider<AccessAppProviver>(create: (_) => AccessAppProviver()),
 ];

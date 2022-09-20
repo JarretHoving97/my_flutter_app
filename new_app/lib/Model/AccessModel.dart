@@ -12,7 +12,7 @@ class AccessModel {
   });
 
   final bool verified;
-  final bool registered;
+  late final bool registered;
 
   factory AccessModel.fromJson(Map<String, dynamic> json) => AccessModel(
         verified: json["verified"],
